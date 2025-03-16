@@ -1,0 +1,167 @@
+define g = Character("Guardia de Seguridad", color="#c8c8ff")
+define v = Character("Vagabundo", color="#f5f5dc")
+define m = Character("Mesera", color="#ffb6c1")
+define m2 = Character("Malandro", color="#ff6666")
+define i = Character("Interrogador", color="#d0d0d0")
+define m3 = Character("Malandro 2", color="#ff4444")
+
+image cafeteria = "cafeteria.jpg"
+image buseta = "buseta.jpg"
+image borde_exterior = "borde_exterior.jpg"
+image interrogatorio = "interrogatorio.jpg"
+image malandro = "malandro.jpg"
+image malandro2 = "malandro2.jpg"
+image oscuridad = "oscuridad.jpg"
+
+label start:
+    scene cafeteria with fade
+
+    g "Bienvenido, has dormido mucho tiempo."
+
+    menu:
+        "Ven levántate, te invito un café.":
+            jump cafeteria_interaction
+
+label cafeteria_interaction:
+    v "Un café... Suena bien, pero ¿qué sucede aquí?"
+    g "No te preocupes, todo está bien."
+
+    m "Hola, bienvenidos a la cafetería. ¿Qué van a tomar?"
+    
+    menu:
+        "Quiero un café.":
+            v "Quisiera un café, por favor."
+            m "Muy bien, un café. Enseguida lo traigo."
+
+    v "Por cierto, he escuchado algunas noticias. Algo terrible ha ocurrido al sur, una gran devastación."
+    v "La gente está asustada. No sé si es seguro salir ahora."
+
+    g "Sí, he escuchado lo mismo. Hay mucha gente huyendo de ahí."
+    g "El sur, el antiguo hogar de los ladrones, está en guerra entre dos facciones... y todo por una sola persona."
+    g "Nadie sabe cómo terminará, pero lo único claro es que nadie está a salvo."
+
+    g "La persona que buscan es un antiguo y poderoso mafioso que desapareció hace 10 años."
+    g "Se dice que posee un artefacto misterioso, algo que podría cambiar el curso de todo. Nadie sabe realmente qué es, pero su poder es aterrador."
+
+    v "Escucha... esa persona que buscan... soy yo."
+    v "Soy el que desapareció hace 10 años. Y ahora, voy a ir al borde exterior de la ciudad para solucionar esto, de una vez por todas."
+
+    g "¿Qué...? ¿Eres tú? Pero... ¿cómo es posible?"
+    v "Hay mucho que no entienden, pero este artefacto debe ser destruido antes de que cause más daño."
+
+    v "Gracias por la información y por el café, pero ahora debo irme."
+
+    g "Ten cuidado, no sabemos qué más podría pasar en el sur..."
+
+    m "Te deseo suerte, espero que todo salga bien."
+
+    v "Lo haré. Nos vemos, y cuídense."
+
+    scene buseta with fade
+
+    v "Es hora de ir al sur. El destino me espera."
+
+    jump borde_exterior
+
+label borde_exterior:
+    scene borde_exterior with fade
+
+    v "He llegado al borde exterior de la ciudad. Aquí es donde todo sucederá."
+
+    # De repente, el Vagabundo es atacado por un malandro.
+    scene malandro with fade
+    m2 "¡Eh, tú! No te muevas."
+
+    v "¿Qué...? ¿Quién eres?"
+    m2 "Soy quien te llevará a donde nadie te podrá salvar."
+
+    # El malandro secuestra al vagabundo y lo lleva a un lugar desconocido.
+
+    scene interrogatorio with fade
+    i "Despierta, ¿cómo te sientes? Ahora es cuando vamos a hablar."
+
+    v "¿Dónde estoy? ¿Qué está pasando?"
+
+    i "No te hagas el tonto. Sabemos que eres tú, el que desapareció hace 10 años."
+    i "Y sé que tienes el artefacto. ¿Qué estás planeando con él?"
+
+    menu:
+        "No tengo idea de qué hablas.":
+            v "No tengo idea de qué hablas. No tengo ningún artefacto."
+            i "¿Crees que soy un tonto? Sabemos que lo tienes. Responde, o las cosas se pondrán feas."
+
+        "Te lo diré, pero solo si me dejas ir.":
+            v "Te lo diré, pero solo si me dejas ir."
+            i "¿Dejarte ir? Eso no va a suceder. Habla ahora."
+
+    # Apagar la luz y el Vagabundo aprovecha la oportunidad para escapar.
+    scene oscuridad with fade
+
+    i "¿Qué... qué está pasando con la luz?"
+
+    # El Vagabundo toma un mini revolver del bolsillo.
+    v "¡Ahora es mi oportunidad!"
+
+    v "¡Suficiente! No pienso quedarme aquí."
+
+    # El Vagabundo dispara al aire para crear confusión.
+    play sound "gunshot.ogg"
+    
+    i "¡Maldita sea! ¿Dónde estás?"
+
+    v "Aquí. Y ahora, me voy."
+
+    # El Vagabundo escapa.
+    scene borde_exterior with fade
+    v "¡Finalmente libre! Ahora tengo que ponerme en marcha antes de que me encuentren."
+
+    menu:
+        "Volver al norte y olvidar esto.":
+            v "Creo que es hora de dejar todo atrás y regresar al norte. Esta historia no me pertenece."
+            g "El viaje al norte fue largo y peligroso, pero finalmente llegué a un lugar más seguro."
+            jump fin
+
+        "Escapar y seguir explorando el borde exterior.":
+            v "No. No voy a volver tan fácilmente. Tengo que encontrar respuestas, y el borde exterior es donde debo estar."
+            v "Aquí comienza una nueva aventura."
+            jump aventura_borde_exterior
+
+label fin:
+    scene cafeteria with fade
+    v "El viaje al norte fue largo y peligroso, pero finalmente llegué a un lugar más seguro. Fin."
+    return
+
+label aventura_borde_exterior:
+    v "He decidido continuar en el borde exterior. Las respuestas están aquí, y no voy a detenerme hasta encontrarlas."
+
+    # En el borde exterior, el Vagabundo se encuentra con más malandros y una decisión importante.
+    scene malandro2 with fade
+    m3 "¡Así que tú eres el que todos buscan, eh? Pues ya veremos si tienes lo que hace falta."
+
+    v "¿Qué quieres? ¿Por qué no me dejas en paz?"
+
+    m3 "Escucha, sabemos que tienes el artefacto. Y aquí, lo que nos interesa es el poder que ese artefacto puede dar."
+
+    menu:
+        "Entregar el artefacto.":
+            v "Te lo daré. Tómalo. Solo déjame ir."
+            m3 "¡Eso es todo lo que queríamos! Este artefacto cambiará todo, y nadie podrá detenernos."
+
+            v "Sé que he hecho lo correcto. El artefacto puede caer en manos equivocadas, pero al menos ahora tendrán lo que buscan."
+
+            g "La paz llegó, aunque de una manera extraña. La ciudad sigue viva, pero el artefacto se ha perdido para siempre."
+
+            jump fin_final
+
+        "Destruir el artefacto y generar paz.":
+            v "No. Este artefacto no debe caer en manos equivocadas. Debo destruirlo para que no cause más daño."
+
+            # Destrucción del artefacto.
+            play sound "explosion.ogg"
+            m3 "¡No! ¿Qué has hecho?!"
+
+            v "He hecho lo que debía hacer. La paz ha regresado, y este artefacto ya no será una amenaza."
+
+            g "Con el artefacto destruido, el conflicto en el borde exterior se detuvo. La gente comenzó a reconstruir sus vidas."
+
+            jump fin_final
