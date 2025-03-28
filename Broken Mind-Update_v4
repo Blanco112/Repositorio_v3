@@ -1,0 +1,122 @@
+define g = Character("Guardia de Seguridad", color="#c8c8ff")
+define v = Character("Vagabundo", color="#f5f5dc")
+define m = Character("Mesera", color="#ffb6c1")
+define m2 = Character("Malandro", color="#ff6666")
+define i = Character("Interrogador", color="#d0d0d0")
+define m3 = Character("Malandro 2", color="#ff4444")
+
+image cafeteria = "cafeteria.jpg"
+image buseta = "buseta.jpg"
+image interrogatorio = "interrogatorio.jpg"
+image malandro = "malandro.jpg"
+image malandro2 = "malandro2.jpg"
+image oscuridad = "oscuridad.jpg"
+image Guardia = "Guardia.jpg"
+image Vagabundo = "Vagabundo.jpg"
+image Mesera = "mesera.jpg"
+image Interrogador = "Interrogador.jpg"
+
+label start:
+    scene cafeteria with fade
+    show Guardia
+    g "Bienvenido, has dormido mucho tiempo."
+
+    menu:
+        "Ven levántate, te invito un café.":
+            jump cafeteria_interaction
+
+label cafeteria_interaction:
+    show Vagabundo
+    v "Un café... Suena bien, pero ¿qué sucede aquí?"
+    g "No te preocupes, todo está bien."
+
+    show Mesera
+    m "Hola, bienvenidos a la cafetería. ¿Qué van a tomar?"
+
+    menu:
+        "Quiero un café.":
+            v "Quisiera un café, por favor."
+            m "Muy bien, un café. Enseguida lo traigo."
+            hide Mesera
+
+    v "Por cierto, he escuchado algunas noticias. Algo terrible ha ocurrido al sur, una gran devastación."
+    v "La gente está asustada. No sé si es seguro salir ahora."
+
+    m "Te deseo suerte, espero que todo salga bien."
+    v "Lo haré. Nos vemos, y cuídense."
+
+    hide Guardia
+    scene buseta with fade
+    v "Es hora de ir al sur. El destino me espera."
+    hide cafeteria_interaction
+
+label borde_exterior:
+    v "He llegado al borde exterior de la ciudad. Aquí es donde todo sucederá."
+
+    # De repente, el Vagabundo es atacado por un malandro.
+    scene malandro with fade
+    show malandro
+    m2 "¡Eh, tú! No te muevas."
+
+    v "¿Qué...? ¿Quién eres?"
+    m2 "Soy quien te llevará a donde nadie te podrá salvar."
+
+    # El malandro secuestra al vagabundo y lo lleva a un lugar desconocido.
+
+    hide malandro
+    show interrogador
+    hide borde_exterior
+    scene interrogatorio with fade
+    i "Despierta, ¿cómo te sientes? Ahora es cuando vamos a hablar."
+
+label aventura_borde_exterior:
+    v "¡Suficiente! No pienso quedarme aquí."
+
+    # El Vagabundo dispara al aire para crear confusión.
+    play sound "gunshot.ogg"  #Sonido balazooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+    i "¡Maldita sea! ¿Dónde estás?"
+
+    menu:
+        "¿Por qué no decirme lo que deseas?" :
+            jump finalmalo
+
+        "Soy quien te hará enfrentarte a tu destino.":
+            jump confrontacion
+
+        "El vagabundo se va y deja todo incognito":
+            jump finalmedio
+
+label finalmedio:
+    v"Mira aqui"
+    i"Oye nononon para"
+    v"Ahora si escape adios no vuelvo"
+
+    return
+
+
+label confrontacion:
+    v "No. Este artefacto no debe caer en manos equivocadas. Debo destruirlo para que no cause más daño."
+
+    # Destrucción del artefacto.
+    play sound "explosion.ogg"
+    play sound "explosion.ogg"  # Explocionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+    m3 "¡No! ¿Qué has hecho?!"
+
+    v "He hecho lo que debía hacer. La paz ha regresado, y este artefacto ya no será una amenaza."
+
+    return
+
+label finalmalo:
+    m3 "vamos a dominar el mundo con esto damelo y seras mi equipo"
+
+    v "me vas a traicionar"
+    m3 "Noooo que te pasa solo damelo"
+    m3 "Eso eso pasamelo lentamente"
+    v "Oye no me apuntes con esa cosa"
+    m3 "Jajajajjaja inutil"
+    v"Nooo asqueroso"
+    play sound "gunshot.ogg"
+    m3 "ahora ssi este es tu fin"
+
+    return
